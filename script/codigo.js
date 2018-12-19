@@ -3,7 +3,12 @@ var ancho = $("main").width();
 var alto = $("main").height();
 
 posicionInicialBola();
+console.log( $("#bola").position());
 
+var y = parseInt($("#bola").css("top"));
+var x = parseInt($("#bola").css("left"));
+
+console.log(y + "-" + x);
 //eventos botones
 $("#arriba").click(function () {
     moverBola(-30, 0);
@@ -27,11 +32,13 @@ function posicionInicialBola() {
     $("#bola").css( "top", posicionIniEjeY + "px");
     $("#bola").css( "left", posicionIniEjeX + "px");
     $("#mensajes").text("Juan Alcocer");
+    y = posicionIniEjeY;
+    x = posicionIniEjeX;
 }
 
 function moverBola( movimientoY, movimientoX) {
-    let posiciEjeY = parseInt($("#bola").css("top")) + movimientoY;
-    let posiciEjeX = parseInt($("#bola").css("left")) +  movimientoX;
+    let posiciEjeY = y + movimientoY;
+    let posiciEjeX = x +  movimientoX;
     if(posiciEjeY >= alto){
         $("#mensajes").text("Ha llegado al borde inferior");
     }else if(posiciEjeY < 0){
@@ -41,11 +48,14 @@ function moverBola( movimientoY, movimientoX) {
     }else if(posiciEjeX < 0){
         $("#mensajes").text("Ha llegado al borde izquierdo");
     }else{
-        $("#bola").css( "top", posiciEjeY + "px" );
-        $("#bola").css( "left", posiciEjeX + "px" );
+        y = y + movimientoY;
+        x = x + movimientoX;
+        $("#bola").css( "top", y + "px" );
+        $("#bola").css( "left", x + "px" );
         $("#mensajes").text("Juan Alcocer");
+        
     }
-    
+    console.log(y + "-" + x);
 }
 
     $(document).keypress(function(e) {
