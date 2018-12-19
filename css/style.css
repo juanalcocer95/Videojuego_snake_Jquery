@@ -34,8 +34,8 @@ footer{
     line-height: 60px;
 }
 body > div{
-    width: 1200px;
-    height: 580px;
+    width: 1300px;
+    height: 750px;
     margin: 0 auto;
     margin-top: 90px;
     display: flex;
@@ -43,7 +43,7 @@ body > div{
     justify-content: space-around;
 }
 main{
-    width: 70%;
+    width: 930px;
     box-shadow: 0px 0px 3px black;
     background-color: #d5eeff;
 }
