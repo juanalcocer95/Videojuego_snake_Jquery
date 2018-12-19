@@ -5,25 +5,31 @@ var alto = $("main").height();
 posicionInicialBola();
 console.log( $("#bola").position());
 
+var $movimiento = 30;
+
 var y = parseInt($("#bola").css("top"));
 var x = parseInt($("#bola").css("left"));
 
-console.log(y + "-" + x);
 //eventos botones
 $("#arriba").click(function () {
-    moverBola(-30, 0);
+    moverBola(-$movimiento, 0);
+    $("img").css("transform", "rotate(180deg)");
 });
 $("#izquierda").click(function () {
-    moverBola(0, -30);
+    moverBola(0, -$movimiento);
+    $("img").css("transform", "rotate(90deg)");
 });
 $("#derecha").click(function () {
-    moverBola(0, 30);
+    moverBola(0, $movimiento);
+    $("img").css("transform", "rotate(270deg)");
 });
 $("#abajo").click(function () {
-    moverBola(30, 0);
+    moverBola($movimiento, 0);
+    $("img").css("transform", "rotate(0deg)");
 });
 $("#stop").click(function () {
     posicionInicialBola();
+    $("img").css("transform", "rotate(0deg)");
 });  
 
 function posicionInicialBola() {
@@ -39,11 +45,11 @@ function posicionInicialBola() {
 function moverBola( movimientoY, movimientoX) {
     let posiciEjeY = y + movimientoY;
     let posiciEjeX = x +  movimientoX;
-    if(posiciEjeY >= alto){
+    if(posiciEjeY >= alto - $movimiento){
         $("#mensajes").text("Ha llegado al borde inferior");
     }else if(posiciEjeY < 0){
         $("#mensajes").text("Ha llegado al borde superior");
-    }else if(posiciEjeX >= ancho){
+    }else if(posiciEjeX >= ancho - $movimiento){
         $("#mensajes").text("Ha llegado al borde derecho");
     }else if(posiciEjeX < 0){
         $("#mensajes").text("Ha llegado al borde izquierdo");
@@ -52,28 +58,30 @@ function moverBola( movimientoY, movimientoX) {
         x = x + movimientoX;
         $("#bola").css( "top", y + "px" );
         $("#bola").css( "left", x + "px" );
-        $("#mensajes").text("Juan Alcocer");
-        
+        $("#mensajes").text("Juan Alcocer");    
     }
-    console.log(y + "-" + x);
 }
 
     $(document).keypress(function(e) {
         switch (e.which) {
             case 119: {
-                moverBola(-30, 0);
+                moverBola(-$movimiento, 0);
+                $("img").css("transform", "rotate(180deg)");
                 break;
             }
             case 115: {
-                moverBola(30, 0);
+                moverBola($movimiento, 0);
+                $("img").css("transform", "rotate(0deg)");
                 break;
             }
             case 100: {
-                moverBola(0, 30);
+                moverBola(0, $movimiento);
+                $("img").css("transform", "rotate(270deg)");
                 break;
             }
             case 97: {
-                moverBola(0, -30);
+                moverBola(0, -$movimiento);
+                $("img").css("transform", "rotate(90deg)");
                 break;
             }
         }                                           
